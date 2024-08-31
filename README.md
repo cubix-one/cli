@@ -12,7 +12,7 @@ The Cubix CLI offers several commands to assist in your project development.
 
 ### 1.1. Available Commands
 
-- `cubix init <project-name>`: Initialize a new Cubix project.
+- `cubix new <project-name>`: Create a new Cubix project.
 - `cubix build`: Build your project.
 - `cubix watch`: Starts the watch mode for development.
 - `cubix help`: Show help for a command.
