@@ -1,6 +1,6 @@
 {
   "name": "@cbxts/cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "module": "src/index.ts",
   "main": "dist/index.js",
   "type": "commonjs",
@@ -22,8 +22,8 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@cubix-one/definitions": "^0.0.9",
-    "@cubix-one/utils": "^0.0.4",
+    "@cubix-one/definitions": "latest",
+    "@cubix-one/utils": "latest",
     "chokidar": "^3.6.0",
     "commander": "^12.1.0",
     "execa": "^9.3.1",
