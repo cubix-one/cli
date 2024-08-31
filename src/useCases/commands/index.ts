@@ -29,8 +29,8 @@ export default class Commands {
 
 	private defineCommands(): void {
 		this.program
-			.command('init [projectName]')
-			.description('Initialize a new project')
+			.command('new [projectName]')
+			.description('Create a new project')
 			.allowUnknownOption(true)
 			.action(async (projectName) => {
 				new Build(projectName).perform();
