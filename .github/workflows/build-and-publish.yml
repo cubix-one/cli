@@ -1,0 +1,45 @@
+name: Publicar no NPM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Configurar Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Verificar mudança de versão
+        id: check
+        run: |
+          git diff HEAD^ HEAD -- package.json | grep '"version"' || echo "Versão não mudou"
+          if git diff HEAD^ HEAD -- package.json | grep '"version"' > /dev/null; then
+            echo "version_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "version_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Instalar dependências
+        if: steps.check.outputs.version_changed == 'true'
+        run: bun install
+
+      - name: Build
+        if: steps.check.outputs.version_changed == 'true'
+        run: bun run build
+
+      - name: Publicar no NPM
+        if: steps.check.outputs.version_changed == 'true'
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
