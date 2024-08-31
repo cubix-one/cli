@@ -28,6 +28,13 @@ jobs:
             echo "version_changed=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Configurar .npmrc
+        if: steps.check.outputs.version_changed == 'true'
+        run: |
+          touch .npmrc
+          echo "@cubix-one:registry=https://npm.pkg.github.com" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.PACKAGE_TOKEN }}" >> .npmrc
+
       - name: Instalar dependências
         if: steps.check.outputs.version_changed == 'true'
         run: bun install
@@ -39,7 +46,7 @@ jobs:
       - name: Publicar no NPM
         if: steps.check.outputs.version_changed == 'true'
         run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
