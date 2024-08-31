@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    // Enable latest features
+    "lib": ["ESNext", "DOM"],
+    "target": "ESNext",
+    "module": "CommonJS",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "allowJs": true,
+
+    // Bundler mode
+    // "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": false,
+    "noEmit": false,
+
+    // Best practices
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "forceConsistentCasingInFileNames": true,
+
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["/*"],
+      "@utils/*": ["utils/*"],
+      "@useCases/*": ["useCases/*"],
+      "@core/*": ["core/*"],
+      "@cli/*": ["cli/*"]
+    },
+
+    "rootDir": "./src",
+    "outDir": "./dist",
+  },
+  "include": ["src/**/*"]
+}
