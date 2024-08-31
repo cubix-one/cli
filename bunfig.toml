@@ -1,0 +1,14 @@
+[build]
+target = "node"
+outdir = "dist"
+sourcemap = "inline"
+
+[build.commonjs]
+format = "cjs"
+
+[build.paths]
+"@/*" = "./src/*"
+"@utils/*" = "./src/utils/*"
+"@useCases/*" = "./src/useCases/*"
+"@core/*" = "./src/core/*"
+"@cli/*" = "./src/cli/*"
